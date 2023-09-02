@@ -1,19 +1,18 @@
 import React from 'react';
+import  { useContext, useRef, useState } from "react";
+// import styled, { createGlobalStyle } from "styled-components";
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import ThemeContextWrapper from "./themes/themeContext";
-import DocumentContextWrapper from "./documents/documentContext";
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ThemeContextWrapper>
-      <DocumentContextWrapper>
+    
         <App />
-      </DocumentContextWrapper>
-    </ThemeContextWrapper>
+    
   </React.StrictMode>
 );
 
