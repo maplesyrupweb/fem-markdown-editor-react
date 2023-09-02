@@ -1,18 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledNavbar = styled`
-width: 100vw;
-height: 72px;
+const StyledNavbar = styled.div`
+  width: 100vw;
+  height: 72px;
+  border-bottom: 1px solid grey;
 `;
 
-const TestThemeButton = styled.button``;
-
 const Navbar = () => {
-  return <StyledNavbar>
-    Hello World 
-    <TestThemeButton>Test Me</TestThemeButton>
-  </StyledNavbar>;
+  return <StyledNavbar></StyledNavbar>;
 };
 
 export default Navbar;
