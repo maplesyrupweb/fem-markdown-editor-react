@@ -6,8 +6,13 @@ width: 100vw;
 height: 72px;
 `;
 
+const TestThemeButton = styled.button``;
+
 const Navbar = () => {
-  return <StyledNavbar></StyledNavbar>;
+  return <StyledNavbar>
+    Hello World 
+    <TestThemeButton>Test Me</TestThemeButton>
+  </StyledNavbar>;
 };
 
 export default Navbar;
