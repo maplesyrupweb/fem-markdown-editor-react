@@ -4,9 +4,12 @@ import { ThemeContext } from "../../themes/themeContext";
 
 const StyledThemeSelection = styled.div``;
 
+/*main is defined in themes.js */
+/*fix issue of button not changing background color*/
+
 const TestThemeButton = styled.button`
   color: ${(props) => props.theme.color.markdownbody};
-  background-color: ${(props) => props.theme.background};
+  background-color: ${(props) => props.theme.background.main};
 `;
 
 const ThemeSelection = () => {
