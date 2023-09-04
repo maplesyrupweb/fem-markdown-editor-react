@@ -1,11 +1,12 @@
-import React from "react";
-import { useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import iconMenu from "../../assets/icon-menu.svg";
-import iconDelete from "../../assets/icon-delete.svg";
+import iconClose from "../../assets/icon-close.svg";
 import iconDocument from "../../assets/icon-document.svg";
-import ThemeSelection from "./ThemeSelection";
 
+import SaveButton from "./SaveButton";
+import DeleteButton from "./DeleteButton";
+import { DocumentContext } from "../../documents/documentContext";
 
 const StyledNavbar = styled.div`
   width: 100vw;
@@ -15,13 +16,15 @@ const StyledNavbar = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  transform: translateX(
+    ${({ showSidebar }) => (showSidebar ? "250px" : "0px")}
+  );
+  transition: 0.3s;
 `;
-
 const LeftContainer = styled.div`
   display: flex;
   flex-flow: row nowrap;
 `;
-
 const MenuButton = styled.div`
   height: 72px;
   width: 72px;
@@ -29,10 +32,12 @@ const MenuButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    background-color: #e46643;
+  }
 `;
-
 const MenuIcon = styled.img``;
-
 const Title = styled.div`
   height: 100%;
   width: 184px;
@@ -46,14 +51,12 @@ const Title = styled.div`
   line-height: 18px;
   letter-spacing: 5px;
 `;
-
 const Divider = styled.div`
   height: 40px;
   margin-right: 24px;
   border-left: 1px solid #5a6069;
   align-self: center;
 `;
-
 const DocumentContainer = styled.div`
   height: 36px;
   display: flex;
@@ -61,12 +64,10 @@ const DocumentContainer = styled.div`
   justify-content: center;
   align-self: center;
 `;
-
 const DocumentIcon = styled.img`
   height: 16px;
   align-self: center;
 `;
-
 const DocumentNameContainer = styled.div`
   font-family: "Roboto";
   font-style: normal;
@@ -78,7 +79,6 @@ const DocumentNameContainer = styled.div`
   display: flex;
   flex-flow: column nowrap;
 `;
-
 const DocumentNameEditor = styled.input`
   width: 400px;
   color: #ffffff;
@@ -100,20 +100,16 @@ const DocumentNameEditor = styled.input`
     border-bottom: 1px solid #ffffff;
   }
 `;
-const RightContainer = styled.div``;
-const DeleteButton = styled.div``;
-const DeleteIcon = styled.img``;
+const RightContainer = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+`;
 
-const Navbar = ({ handleEnter }) => {
-  const [documentName, setDocumentName] = useState("welcome.md");
+const Navbar = ({ showSidebar, handleSidebar, handleEnter }) => {
+  const { activeDocument, onDocumentNameChange } = useContext(DocumentContext);
 
-  const handleChange = (event) => {
-    setDocumentName(event.target.value);
-
-    console.log("document name: ", event.target.value);
-  };
-
-  /* keycode 13 is the enter key */
   const handleKeyUp = (event) => {
     if (event.keyCode === 13) {
       event.preventDefault();
@@ -123,36 +119,32 @@ const Navbar = ({ handleEnter }) => {
   };
 
   return (
-    <StyledNavbar>
+    <StyledNavbar showSidebar={showSidebar}>
       <LeftContainer>
-          <MenuButton>
-            <MenuIcon src={iconMenu} />
-          </MenuButton>
-          <Title>MARKDOWN</Title>
-          <Divider />
-          <DocumentContainer>
-              <DocumentIcon src={iconDocument} />
-              <DocumentNameContainer>
-                Document Name
-                <DocumentNameEditor
-                  value={documentName}
-                  type="text"
-                  onChange={handleChange}
-                  onKeyUp={handleKeyUp}
-                />
-              </DocumentNameContainer>
-          </DocumentContainer>
-          <button onClick={() => handleEnter()}>Focus on input</button>
+        <MenuButton onClick={handleSidebar}>
+          <MenuIcon src={showSidebar ? iconClose : iconMenu} />
+        </MenuButton>
+        <Title>MARKDOWN</Title>
+        <Divider />
+        <DocumentContainer>
+          <DocumentIcon src={iconDocument} />
+          <DocumentNameContainer>
+            Document Name
+            <DocumentNameEditor
+              value={activeDocument.name}
+              type="text"
+              onChange={onDocumentNameChange}
+              onKeyUp={handleKeyUp}
+            />
+          </DocumentNameContainer>
+        </DocumentContainer>
       </LeftContainer>
-      <ThemeSelection />
       <RightContainer>
-        <DeleteButton>
-          <DeleteIcon src={iconDelete}></DeleteIcon>
-        </DeleteButton>
+        <DeleteButton />
+        <SaveButton />
       </RightContainer>
     </StyledNavbar>
   );
 };
-
 
 export default Navbar;
