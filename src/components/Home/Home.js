@@ -1,11 +1,13 @@
-import React, { forwardRef, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { ThemeContext } from "../../themes/themeContext";
-import { DocumentContext } from "../../documents/documentContext";
 
-/* if showSideBar, width is 250px. Else, width is 0px */
+import MarkdownEditorWindow from "./MarkdownEditorWindow";
+import PreviewWindow from "./PreviewWindow";
 
-const StyledHome = styled.textarea`
+const StyledHome = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
   height: 100%;
   width: 100%;
   position: fixed;
@@ -17,31 +19,25 @@ const StyledHome = styled.textarea`
   transition: 0.3s;
 `;
 
-const Home = forwardRef((props, inputRef) => {
+/*background-color: #5a6069;*/
+const Border = styled.div`
+  height: 100%;
+  width: 1px;
+  background-color: #5a6069;
+`;
+
+const Home = ({ inputRef, showSidebar }) => {
   const { theme } = useContext(ThemeContext);
-  const { activeDocument, onDocumentContentChange } =
-    useContext(DocumentContext);
-
-  console.log("Hello from Home.js");
-
+  // {console.log(Home);}
+  //   {console.log(theme);}
   return (
-    <StyledHome
-      type="text"
-      /* value={activeDocument.content} */
-      value={
-        activeDocument.content
-          ? activeDocument.content
-          : "Your document has been deleted. Please create a new document from your sidebar:)"
-      }
-      onChange={onDocumentContentChange}
-      showSidebar={props.showSidebar}
-      ref={inputRef}
-      theme={theme}
-      {...props}
-      spellcheck="false"
-    ></StyledHome>
+    <StyledHome showSidebar={showSidebar} theme={theme}>
+      <MarkdownEditorWindow ref={inputRef} />
+      <Border />
+      <PreviewWindow />
+    </StyledHome>
   );
-});
+};
 
 Home.displayName = "Home";
 export default Home;

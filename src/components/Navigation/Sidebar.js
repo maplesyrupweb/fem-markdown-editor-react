@@ -96,7 +96,7 @@ const Sidebar = ({ showSidebar }) => {
                 onClick={() => changeActiveDocument(document.id)}
                 key={document.id}
               >
-                {console.log(document.id)}
+                
                 <DocumentIcon src={iconDocument} />
                 <DocumentInformation>
                   <DocumentDate>{document.createdAt}</DocumentDate>
