@@ -27,7 +27,12 @@ const Home = forwardRef((props, inputRef) => {
   return (
     <StyledHome
       type="text"
-      value={activeDocument.content}
+      /* value={activeDocument.content} */
+      value={
+        activeDocument.content
+          ? activeDocument.content
+          : "Your document has been deleted. Please create a new document from your sidebar:)"
+      }
       onChange={onDocumentContentChange}
       showSidebar={props.showSidebar}
       ref={inputRef}
