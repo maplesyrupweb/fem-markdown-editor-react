@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState  } from "react";
 import styled from "styled-components";
 import { ThemeContext } from "../../themes/themeContext";
 
@@ -28,13 +28,22 @@ const Divider = styled.div`
 
 const Home = ({ inputRef, showSidebar }) => {
   const { theme } = useContext(ThemeContext);
-  // {console.log(Home);}
-  //   {console.log(theme);}
+  const [showPreview, setShowPreview] = useState(false);
+  const handlePreview = () => {
+    showPreview ? setShowPreview(false) : setShowPreview(true);
+  };
+    {console.log("Home " + Home);}
+    {console.log("Theme " + theme);}
+    {console.log("Show Preview " + showPreview);}
+    {console.log("Set Show Preview " + setShowPreview);}
+    {console.log("Handle Preview " + handlePreview);}
+
+
   return (
     <StyledHome showSidebar={showSidebar} theme={theme}>
-      <MarkdownEditorWindow ref={inputRef} />
+      <MarkdownEditorWindow ref={inputRef} showPreview={showPreview} />
       <Divider theme={theme}/>
-      <PreviewWindow />
+      <PreviewWindow showPreview={showPreview} handlePreview={handlePreview} />
     </StyledHome>
   );
 };
