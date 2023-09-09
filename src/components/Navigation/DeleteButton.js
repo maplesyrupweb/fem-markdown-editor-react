@@ -1,9 +1,6 @@
-/* Delete, Create, Save buttons very similar */
-
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import iconDelete from "../../assets/icon-delete.svg";
-import { DocumentContext } from "../../documents/documentContext";
 
 const StyledDeleteButton = styled.button`
   height: 20px;
@@ -13,6 +10,7 @@ const StyledDeleteButton = styled.button`
   background-color: #2b2d31;
   cursor: pointer;
   border: none;
+
   &:hover {
     color: #e46643;
   }
@@ -24,11 +22,13 @@ const DeleteIcon = styled.img`
   }
 `;
 
-const DeleteButton = () => {
-  const { deleteDocument } = useContext(DocumentContext);
-
+const DeleteButton = ({ setModalOpen }) => {
   return (
-    <StyledDeleteButton onClick={deleteDocument}>
+    <StyledDeleteButton
+      onClick={() => {
+        setModalOpen(true);
+      }}
+    >
       <DeleteIcon src={iconDelete} />
     </StyledDeleteButton>
   );
