@@ -55,7 +55,14 @@ const DocumentLink = styled.div`
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
+
+
+
 const DocumentIcon = styled.img`
   margin-right: 16.29px;
 `;
@@ -75,6 +82,10 @@ const DocumentName = styled.div`
   font-size: 15px;
   line-height: 18px;
   color: #ffffff;
+
+  ${DocumentLink}:hover & {
+    color: #e46643;
+  }
 `;
 const ThemeContainer = styled.div`
   padding-left: 24px;
