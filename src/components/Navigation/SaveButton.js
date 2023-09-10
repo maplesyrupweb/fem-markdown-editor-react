@@ -27,14 +27,26 @@ const StyledSaveButton = styled.button`
   font-size: 15px;
   line-height: 18px;
   cursor: pointer;
-  
+
   &:hover {
     background-color: #f39765;
+  }
+  @media screen and (max-width: 768px) {
+    width: 40px;
+    justify-content: center;
+    padding: 0;
+    margin-right: 8px;
   }
 `;
 const SaveIcon = styled.img`
   height: 16px;
   width: 16px;
+`;
+
+const Text = styled.div`
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const SaveButton = () => {
@@ -43,7 +55,7 @@ const SaveButton = () => {
   return (
     <StyledSaveButton onClick={() => saveDocument()}>
       <SaveIcon src={iconSave} />
-      Save Changes
+      <Text>Save Changes</Text>
     </StyledSaveButton>
   );
 };

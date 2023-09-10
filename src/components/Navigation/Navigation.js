@@ -14,7 +14,10 @@ const Navigation = ({
 }) => {
   return (
     <StyledNavigation>
-      <Sidebar showSidebar={showSidebar} />
+      <Sidebar 
+       showSidebar={showSidebar}
+       handleSidebar={handleSidebar}
+       />
       <Navbar
         showSidebar={showSidebar}
         handleSidebar={handleSidebar}

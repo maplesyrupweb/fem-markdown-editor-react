@@ -12,7 +12,7 @@ const StyledSidebar = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #2b2d31;
+  background-color: #1d1f22;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
@@ -30,6 +30,7 @@ const DocumentsContainer = styled.div`
 `;
 const DocumentsTitle = styled.div`
   margin-top: 27px;
+  margin-bottom: 29px;
   padding-bottom: 29px;
   font-family: "Roboto";
   font-style: normal;
@@ -43,6 +44,7 @@ const DocumentsTitle = styled.div`
   color: #7c8187;
 `;
 const DocumentsList = styled.div`
+  max-height: calc(100vh - 208px);
   margin-top: 24px;
   display: flex;
   flex-flow: column nowrap;
@@ -50,6 +52,7 @@ const DocumentsList = styled.div`
 `;
 const DocumentLink = styled.div`
   height: 36px;
+  margin-bottom: 26px;
   margin-top: 26px;
   display: flex;
   flex-flow: row nowrap;
@@ -92,7 +95,7 @@ const ThemeContainer = styled.div`
   padding-bottom: 24px;
 `;
 
-const Sidebar = ({ showSidebar }) => {
+const Sidebar = ({ showSidebar, handleSidebar }) => {
   const { documents, changeActiveDocument } = useContext(DocumentContext);
 
 
@@ -110,7 +113,10 @@ useEffect(() => {
           {documents && documents.map((document) => {
             return (
               <DocumentLink
-                onClick={() => changeActiveDocument(document.id)}
+              onClick={() => {
+                changeActiveDocument(document.id);
+                handleSidebar();
+              }}
                 key={document.id}
               >
                 
