@@ -30,20 +30,28 @@ const Divider = styled.div`
   
 `;
 
+/* Theme colors defined in theme.js */
+const CreateDocumentMessage = styled.div`
+  margin-top: 12px;
+  margin-left: 16px;
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: ${(props) => props.theme.color.markdownbody};
+`;
+
+
 const Home = ({ inputRef, showSidebar }) => {
   const { theme } = useContext(ThemeContext);
+
   const { activeDocument } = useContext(DocumentContext);
   const [showPreview, setShowPreview] = useState(false);
   const handlePreview = () => {
     showPreview ? setShowPreview(false) : setShowPreview(true);
   };
-    {console.log("Home " + Home);}
-    {console.log("Theme " + theme);}
-    {console.log("Show Preview " + showPreview);}
-    {console.log("Set Show Preview " + setShowPreview);}
-    {console.log("Handle Preview " + handlePreview);}
-
-
+    
   return (
     <StyledHome showSidebar={showSidebar} theme={theme}>
 
@@ -55,7 +63,10 @@ const Home = ({ inputRef, showSidebar }) => {
       <PreviewWindow showPreview={showPreview} handlePreview={handlePreview} />
       </>
     ) : (
-      <div>Hello World</div>
+      <CreateDocumentMessage theme={theme}>
+      Looks like you deleted everything! Please create a new document in the
+      sidebar :)
+    </CreateDocumentMessage>
     )}
     </StyledHome>
   );

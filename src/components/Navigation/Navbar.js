@@ -131,7 +131,7 @@ const Navbar = ({ showSidebar, handleSidebar, handleEnter, setModalOpen }) => {
           <DocumentNameContainer>
             Document Name
             <DocumentNameEditor
-              value={activeDocument ? activeDocument.name: ""}
+              value={activeDocument ? activeDocument.name: "No document available"}
               disabled={!activeDocument}
               type="text"
               onChange={onDocumentNameChange}

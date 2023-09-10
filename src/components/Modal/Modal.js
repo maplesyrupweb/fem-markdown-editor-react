@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { ThemeContext } from "../../themes/themeContext";
 import { DocumentContext } from "../../documents/documentContext";
 
+
 const StyleModal = styled(Modal)`
   position: fixed;
   top: 50%;
@@ -69,6 +70,11 @@ const CustomModal = ({ modalOpen, setModalOpen }) => {
       isOpen={modalOpen}
       onRequestClose={() => setModalOpen(false)}
       theme={theme}
+      style={{
+        overlay: {
+          backgroundColor: "rgba(124, 129, 135, .5)",
+        },
+      }}
     >
       <Header theme={theme}>Delete this document?</Header>
       <Text theme={theme}>
@@ -79,6 +85,7 @@ const CustomModal = ({ modalOpen, setModalOpen }) => {
         onClick={() => {
           setModalOpen(false);
           deleteDocument();
+          console.log("Document deleted!");
         }}
       >
         Confirm & Delete

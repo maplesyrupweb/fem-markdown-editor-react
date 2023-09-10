@@ -4,6 +4,8 @@ import Markdown from "markdown-to-jsx";
 import { ThemeContext } from "../../themes/themeContext";
 import { DocumentContext } from "../../documents/documentContext";
 import iconShowPreivew from "../../assets/icon-show-preview.svg";
+import iconHidePreview from "../../assets/icon-hide-preview.svg";
+
 
 /* If showPreview, width is 100%. Else, width is 50% */
 
@@ -69,7 +71,7 @@ const PreviewWindow = ({ showPreview, handlePreview}) => {
     <TitleContainer theme={theme}>
     PREVIEW
     <PreviewButton theme={theme} onClick={() => handlePreview()}>
-      <PreviewIcon src={iconShowPreivew} />
+      <PreviewIcon src={showPreview ? iconHidePreview : iconShowPreivew} />
     </PreviewButton>
   </TitleContainer>
 
