@@ -4,7 +4,10 @@ import { ThemeContext } from "../../themes/themeContext";
 
 import MarkdownEditorWindow from "./MarkdownEditorWindow";
 import PreviewWindow from "./PreviewWindow";
+import { DocumentContext } from "../../documents/documentContext";
 
+
+/* Home screen - side bar */
 const StyledHome = styled.div`
   display: flex;
   flex-flow: row nowrap;
@@ -19,15 +22,17 @@ const StyledHome = styled.div`
   transition: 0.3s;
 `;
 
-/*background-color: #5a6069;*/
+/* The divider between editor and preview screens */
 const Divider = styled.div`
   height: 100%;
   width: 1px;
   background-color: ${({ theme }) => theme.divier}
+  
 `;
 
 const Home = ({ inputRef, showSidebar }) => {
   const { theme } = useContext(ThemeContext);
+  const { activeDocument } = useContext(DocumentContext);
   const [showPreview, setShowPreview] = useState(false);
   const handlePreview = () => {
     showPreview ? setShowPreview(false) : setShowPreview(true);
@@ -41,9 +46,17 @@ const Home = ({ inputRef, showSidebar }) => {
 
   return (
     <StyledHome showSidebar={showSidebar} theme={theme}>
+
+    {activeDocument ?  ( 
+      <>
+
       <MarkdownEditorWindow ref={inputRef} showPreview={showPreview} />
       <Divider theme={theme}/>
       <PreviewWindow showPreview={showPreview} handlePreview={handlePreview} />
+      </>
+    ) : (
+      <div>Hello World</div>
+    )}
     </StyledHome>
   );
 };

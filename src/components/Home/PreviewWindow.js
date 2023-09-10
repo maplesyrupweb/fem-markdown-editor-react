@@ -64,7 +64,6 @@ const PreviewWindow = ({ showPreview, handlePreview}) => {
     <StyledPreview 
      theme={theme}
      showPreview={showPreview} 
-     activeDocument={activeDocument}
      >
 
     <TitleContainer theme={theme}>
@@ -76,7 +75,9 @@ const PreviewWindow = ({ showPreview, handlePreview}) => {
 
 
       <MarkdownContainer>
-        <Markdown>{activeDocument.content}</Markdown>
+        <Markdown>
+          {activeDocument ? activeDocument.content : "abcdefg"}
+        </Markdown>
       </MarkdownContainer>
     </StyledPreview>
   );
