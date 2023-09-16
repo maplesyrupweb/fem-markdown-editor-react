@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL - [In-browser markdown editor](https://nablanco.github.io/browser-markdown-editor/)
+- Live Site URL - [In-browser markdown editor](https://maplesyrupweb.github.io/fem-markdown-editor-react/)
 
 ## My process
 
